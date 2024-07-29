@@ -1,9 +1,11 @@
 import IonIcon from '@reacticons/ionicons';
 import { Link } from 'react-router-dom';
+import { useMainStore } from '../stores/mainStore';
 
-export const SideBar = ({ isActive }: { isActive: boolean }) => {
+export const SideBar = () => {
+    const { isVisible } = useMainStore();
 
-    return <div className={`navigation ${isActive ? 'active' : ''}`}>
+    return <div className={`navigation ${isVisible ? 'active' : ''}`}>
         <ul>
             <li>
                 <a href="#">

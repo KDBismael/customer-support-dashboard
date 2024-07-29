@@ -1,9 +1,12 @@
-import IonIcon from "@reacticons/ionicons"
+import IonIcon from "@reacticons/ionicons";
+import { useMainStore } from "../stores/mainStore";
 
-export const TolBar = ({ toggleVal, toggle }: { toggleVal?: boolean, toggle?: (val: boolean) => void }) => {
+export const TolBar = () => {
+    const mainStore = useMainStore();
+
     return <div className="topbar">
         <div
-            // onClick={() => toggle(!toggleVal)}
+            onClick={() => mainStore.toggleVisible()}
             className="toggle">
             <IonIcon name="menu-outline" />
         </div>
