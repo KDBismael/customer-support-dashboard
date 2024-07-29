@@ -1,7 +1,9 @@
 import IonIcon from '@reacticons/ionicons';
+import { Link } from 'react-router-dom';
 
-export const SideBar = () => {
-    return <div className="navigation">
+export const SideBar = ({ isActive }: { isActive: boolean }) => {
+
+    return <div className={`navigation ${isActive ? 'active' : ''}`}>
         <ul>
             <li>
                 <a href="#">
@@ -13,21 +15,21 @@ export const SideBar = () => {
             </li>
 
             <li>
-                <a href="#">
+                <Link to="dashboard">
                     <span className="icon">
                         <IonIcon name="home-outline" />
                     </span>
                     <span className="title">Dashboard</span>
-                </a>
+                </Link>
             </li>
 
             <li>
-                <a href="#">
+                <Link to={'tickets'}>
                     <span className="icon">
                         <IonIcon name="people-outline" />
                     </span>
-                    <span className="title">Customers</span>
-                </a>
+                    <span className="title">Tickets</span>
+                </Link>
             </li>
 
             <li>

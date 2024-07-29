@@ -1,15 +1,17 @@
 import IonIcon from "@reacticons/ionicons"
 
-export const TolBar = () => {
+export const TolBar = ({ toggleVal, toggle }: { toggleVal?: boolean, toggle?: (val: boolean) => void }) => {
     return <div className="topbar">
-        <div className="toggle">
+        <div
+            // onClick={() => toggle(!toggleVal)}
+            className="toggle">
             <IonIcon name="menu-outline" />
         </div>
 
         <div className="search">
             <label>
                 <input type="text" placeholder="Search here" />
-                <IonIcon name="search-outline" />
+                <IonIcon size="large" name="search-outline" />
             </label>
         </div>
 

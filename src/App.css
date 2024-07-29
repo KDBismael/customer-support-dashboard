@@ -177,6 +177,10 @@ body {
 .search label {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
 }
 
 .search label input {

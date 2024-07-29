@@ -1,26 +1,19 @@
-import './App.css'
-import { Card } from './components/card'
-import { RecentTicket } from './components/recentTicket'
-import { SideBar } from './components/side-bar'
-import { TolBar } from './components/tol-bar'
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import './App.css';
+import { SideBar } from './components/side-bar';
 
 function App() {
-
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const toggle = (val: boolean) => {
+    setToggleMenu(val);
+  }
   return (
     <>
       <div className='container'>
-        <SideBar />
-        <div className="main">
-          <TolBar />
-          <div className="cardBox">
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='cash-outline' name='Earning' number={7842} />
-          </div>
-          <div className="details">
-            <RecentTicket />
-          </div>
+        <SideBar isActive={toggleMenu} />
+        <div className={`main ${toggleMenu ? 'active' : ''}`}>
+          <Outlet />
         </div>
       </div>
     </>
