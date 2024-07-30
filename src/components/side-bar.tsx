@@ -7,12 +7,12 @@ export const SideBar = () => {
 
     return <div className={`navigation ${isVisible ? 'active' : ''}`}>
         <ul>
-            <li>
+            <li >
                 <a href="#">
                     <span className="icon">
-                        <IonIcon name="logo-apple" />
+                        <IonIcon name="logo-apple" size='large' />
                     </span>
-                    <span className="title">Brand Name</span>
+                    <span className="title">Tickets Center</span>
                 </a>
             </li>
 

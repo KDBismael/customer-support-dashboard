@@ -2,13 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
+import ExcludeRoute from './components/exclude-route';
+import PrivateRoute from './components/private-route';
 import './index.css';
 import { DashBoard } from './pages/dashboard';
+import { Login } from './pages/login';
+import { Tickets } from './pages/tickets';
 
 const router = createBrowserRouter([
+  { path: '/login', element: <ExcludeRoute>{<Login />}</ExcludeRoute> },
   {
     path: "/",
-    element: <App />,
+    element: <PrivateRoute>{<App />}</PrivateRoute>,
     children: [
       {
         path: "",
@@ -20,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "tickets",
-        element: <div>Tickets</div>,
+        element: <Tickets />
       },
     ],
   },
