@@ -532,6 +532,82 @@ body {
   border-radius: 20px;
 }
 
+/* Ticket details */
+.ticket-details {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.ticket-details .title,
+.ticket-details .container .details div .label,
+.ticket-details .container .send-messages .email h2,
+.ticket-details .container .send-messages .instant-message h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.ticket-details .container .details {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.ticket-details .container .details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.ticket-details .container .details div .value {
+  text-align: justify;
+  font-style: italic;
+}
+
+.ticket-details .container .send-messages .email {
+  max-width: 300px;
+}
+
+.ticket-details .container .send-messages {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-details .container .send-messages .email textarea {
+  display: block;
+  width: 100%;
+  height: 400px;
+  margin: 20px 0;
+  resize: none;
+  border: 1.5px var(--blue) solid;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ticket-details .container .send-messages .email button {
+  background-color: var(--blue);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+.ticket-details .container .send-messages .instant-message {
+  height: 440px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.ticket-details .container .send-messages .instant-message .container {
+  margin-top: 20px;
+  background-color: grey;
+  width: 100%;
+  height: 100%;
+}
+
+.ticket-details .container .send-messages .instant-message h2 {
+  text-align: right;
+}
+
 /* LOGIN */
 .loginBody {
   width: 100vw;
