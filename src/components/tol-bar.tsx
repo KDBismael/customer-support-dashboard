@@ -19,7 +19,7 @@ export const TolBar = () => {
         </div>
 
         <div className="user">
-            <img src="src/assets/imgs/customer01.jpg" alt="" />
+            <img src="/src/assets/imgs/customer01.jpg" alt="" />
         </div>
     </div>
 }

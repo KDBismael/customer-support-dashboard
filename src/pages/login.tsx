@@ -10,7 +10,7 @@ export const Login = () => {
                 </form>
             </div>
             <div className="image">
-                <img src="src/assets/5138237.jpg" />
+                <img src="/src/assets/5138237.jpg" />
             </div>
         </div>
     </div>
