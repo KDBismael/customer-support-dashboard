@@ -4,10 +4,10 @@ import { RecentTicket } from "../components/recentTicket"
 export const DashBoard = () => {
     return <>
         <div className="cardBox">
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='eye-outline' name='Daily Views' number={1504} />
-            <Card iconName='cash-outline' name='Earning' number={7842} />
+            <Card iconName='shield-checkmark-outline' name='Finis' number={1} />
+            <Card iconName='eye-outline' name='En progress' number={0} />
+            <Card iconName='hand-left-outline' name='En attente' number={1} />
+            <Card iconName='close-outline' name='Annuler' number={1} />
         </div>
         <div className="details">
             <RecentTicket />

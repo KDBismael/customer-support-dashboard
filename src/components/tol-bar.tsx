@@ -1,4 +1,5 @@
 import IonIcon from "@reacticons/ionicons";
+import { Link } from "react-router-dom";
 import { useMainStore } from "../stores/mainStore";
 
 export const TolBar = () => {
@@ -17,9 +18,10 @@ export const TolBar = () => {
                 <IonIcon size="large" name="search-outline" />
             </label>
         </div>
-
-        <div className="user">
-            <img src="/src/assets/imgs/customer01.jpg" alt="" />
-        </div>
+        <Link to={'settings'}>
+            <div className="user">
+                <img src="/src/assets/image copy.png" alt="user" />
+            </div>
+        </Link>
     </div>
 }

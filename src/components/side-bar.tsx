@@ -8,9 +8,9 @@ export const SideBar = () => {
     return <div className={`navigation ${isVisible ? 'active' : ''}`}>
         <ul>
             <li >
-                <a href="#">
-                    <span className="icon">
-                        <IonIcon name="logo-apple" size='large' />
+                <a href="#" className=''>
+                    <span className="icon !flex !items-center !justify-end">
+                        <img className='w-10 h-10 object-cover rounded-full' src="/src/assets/image.png" alt="logo payqin" />
                     </span>
                     <span className="title">Tickets Center</span>
                 </a>
@@ -34,41 +34,41 @@ export const SideBar = () => {
                 </Link>
             </li>
 
-            <li>
+            {/* <li>
                 <a href="#">
                     <span className="icon">
                         <IonIcon name="chatbubble-outline" />
                     </span>
                     <span className="title">Messages</span>
                 </a>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
                 <a href="#">
                     <span className="icon">
                         <IonIcon name="help-outline" />
                     </span>
                     <span className="title">Help</span>
                 </a>
-            </li>
+            </li> */}
 
             <li>
-                <a href="#">
+                <Link to={'settings'}>
                     <span className="icon">
                         <IonIcon name="settings-outline" />
                     </span>
                     <span className="title">Settings</span>
-                </a>
+                </Link>
             </li>
 
-            <li>
+            {/* <li>
                 <a href="#">
                     <span className="icon">
                         <IonIcon name="lock-closed-outline" />
                     </span>
                     <span className="title">Password</span>
                 </a>
-            </li>
+            </li> */}
 
             <li>
                 <a href="#">

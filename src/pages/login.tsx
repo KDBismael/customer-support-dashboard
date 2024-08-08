@@ -3,10 +3,10 @@ export const Login = () => {
         <div className="login">
             <div className="myform">
                 <form action="">
-                    <h2>ADMIN LOGIN</h2>
+                    <h2>CONNEXION ADMIN</h2>
                     <input type="text" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button type="submit">LOGIN</button>
+                    <input type="password" placeholder="Mot de passe" />
+                    <button type="submit">Se connecter</button>
                 </form>
             </div>
             <div className="image">

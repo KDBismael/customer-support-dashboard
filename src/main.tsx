@@ -7,7 +7,8 @@ import PrivateRoute from './components/private-route';
 import './index.css';
 import { DashBoard } from './pages/dashboard';
 import { Login } from './pages/login';
-import { TicketDetails } from './pages/ticket-details';
+import { Settings } from './pages/setting';
+import { TicketDetails, ticketLoader } from './pages/ticket-details';
 import { Tickets } from './pages/tickets';
 
 const router = createBrowserRouter([
@@ -29,8 +30,13 @@ const router = createBrowserRouter([
         element: <Tickets />,
       },
       {
-        path: 'tickets/id',
-        element: <TicketDetails />
+        path: 'tickets/:id',
+        element: <TicketDetails />,
+        loader: ticketLoader,
+      },
+      {
+        path: "settings",
+        element: <Settings />
       }
     ],
   },

@@ -10,7 +10,7 @@ interface MainStoreI {
 }
 
 export const useMainStore = create<MainStoreI>((set) => ({
-    user: { token: 'hey', name: 'KDB', email: 'kdb@gmail.com' },
+    user: { token: 'token', name: 'KDB', email: 'kdb@gmail.com' },
     isVisible: false,
     toggleVisible: () => set((state) => ({ isVisible: !state.isVisible }))
 }))

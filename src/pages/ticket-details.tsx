@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import {
     BtnBold,
     BtnBulletList,
@@ -18,16 +19,22 @@ import {
 } from "react-simple-wysiwyg";
 import { Chat } from "../components/chat";
 
+export async function ticketLoader({ params }: { params: any }) {
+    return params;
+}
+
 export const TicketDetails = () => {
-    const [html, setHtml] = useState('Write the Email <b>Here.</b>');
+    const [html, setHtml] = useState("Ecris l'email <b>Ici.</b>");
 
     function onHtmlChange(e: ContentEditableEvent) {
         setHtml(e.target.value);
     }
+    const data = useLoaderData();
+    console.log(data);
 
     return <>
         <div className="ticket-details">
-            <h1 className="title">Details du ticket ###########</h1>
+            <h1 className="title">Details du ticket 3</h1>
             <div className="container">
                 <div className="details">
                     <div>
@@ -40,7 +47,17 @@ export const TicketDetails = () => {
                     </div>
                     <div>
                         <span className="label">Description</span>
-                        <span className="value">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</span>
+                        <span className="value">Je rencontre un soucis lors de la suppression de ma carte virtuelle. j'ai pu supprimé 1 carte mais vu que j'ai de l'argent sur le 2eme je ne sais pas comment faire pour supprimer et recuperer mon argent. pouvez vous m'aider?</span>
+                    </div>
+                    <div>
+                        <span className="label">Status</span>
+                        <select value={'Finis'} name="status" id="status-select" className="outline-none border rounded-sm border-blue-700">
+                            <option value="">Opion du status</option>
+                            <option value="Finis">Finis</option>
+                            <option value="En progres">En progress</option>
+                            <option value="En attente">En attente</option>
+                            <option value="Annule">Annuler</option>
+                        </select>
                     </div>
                     <div>
                         <span className="label">Copie le lien de la conversation</span>
