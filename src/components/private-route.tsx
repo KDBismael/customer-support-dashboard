@@ -4,7 +4,8 @@ import { useMainStore } from "../stores/mainStore";
 
 const PrivateRoute = ({ children }: { children: ReactNode | undefined; }) => {
     const { user } = useMainStore()
-    if (!user.token) return <Navigate to="/login" />;
+    const localUser = JSON.parse(localStorage.getItem('user') ?? '')
+    if (!user.token && !localUser.token) return <Navigate to="/login" />;
     return children;
 };
 

@@ -1,9 +1,15 @@
 import IonIcon from '@reacticons/ionicons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMainStore } from '../stores/mainStore';
 
 export const SideBar = () => {
-    const { isVisible } = useMainStore();
+    const navigation = useNavigate()
+    const { isVisible, setUser } = useMainStore();
+    const logOut = () => {
+        setUser({ email: '', token: '', name: '', id: '' })
+        localStorage.removeItem('user');
+        navigation("/login");
+    }
 
     return <div className={`navigation ${isVisible ? 'active' : ''}`}>
         <ul>
@@ -71,7 +77,7 @@ export const SideBar = () => {
             </li> */}
 
             <li>
-                <a href="#">
+                <a onClick={() => logOut()} href="">
                     <span className="icon">
                         <IonIcon name="log-out-outline" />
                     </span>

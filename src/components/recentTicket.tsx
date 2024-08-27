@@ -1,10 +1,14 @@
-import { TableRow } from "./table-row"
+import { useMainStore } from "../stores/mainStore";
+import { TableRow } from "./table-row";
 
 export const RecentTicket = () => {
+    const { tickets } = useMainStore();
+
+
     return <div className="recentOrders">
         <div className="cardHeader">
             <h2>Recent Orders</h2>
-            <a href="#" className="btn">View All</a>
+            <a href="#" className="btn">Voir tous</a>
         </div>
         <table>
             <thead>
@@ -16,9 +20,14 @@ export const RecentTicket = () => {
                 </tr>
             </thead>
             <tbody>
-                <TableRow name="coulibaly" email="coulby@gmail.com " description="probleme1" status="En attente" />
+                {
+                    tickets.map((ticket) => (
+                        <TableRow id={ticket._id} key={ticket._id} name={ticket.username} email={ticket.email} description={ticket.description} status={ticket.status} />
+                    ))
+                }
+                {/* <TableRow name="coulibaly" email="coulby@gmail.com " description="probleme1" status="En attente" />
                 <TableRow name="zadi kouakou" email="kouakouz@gmail.com" description="probleme2" status="Annuler" />
-                <TableRow name="Kondombo" email="contact.kondombo@gmail.com" description="Je rencontre un soucis lors de la suppression de ma carte virtuelle. j'ai pu supprimé 1 carte mais vu que j'ai de l'argent sur le 2eme je ne sais pas comment faire pour supprimer et recuperer mon argent. pouvez vous m'aider?" status="Finis" />
+                <TableRow name="Kondombo" email="contact.kondombo@gmail.com" description="Je rencontre un souci lors de la suppression de ma carte virtuelle. J'ai pu supprimer une carte, mais comme j'ai de l'argent sur la deuxième, je ne sais pas comment faire pour la supprimer et récupérer mon argent. Pouvez-vous m'aider?" status="Finis" /> */}
             </tbody>
         </table>
     </div>

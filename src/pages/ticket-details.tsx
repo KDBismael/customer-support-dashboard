@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import {
     BtnBold,
@@ -17,6 +17,7 @@ import {
     Separator,
     Toolbar,
 } from "react-simple-wysiwyg";
+import { getTicket, updateTicket } from "../api";
 import { Chat } from "../components/chat";
 
 export async function ticketLoader({ params }: { params: any }) {
@@ -24,44 +25,63 @@ export async function ticketLoader({ params }: { params: any }) {
 }
 
 export const TicketDetails = () => {
+    const user = JSON.parse(localStorage.getItem('user') ?? '')
     const [html, setHtml] = useState("Ecris l'email <b>Ici.</b>");
+    const [ticket, setTicket] = useState<TicketI>();
 
     function onHtmlChange(e: ContentEditableEvent) {
         setHtml(e.target.value);
     }
-    const data = useLoaderData();
-    console.log(data);
+    const urlData = useLoaderData();
+    const ticketId = (urlData as any).id;
+
+    const onStatusChange = async (e: ChangeEvent<HTMLSelectElement>) => {
+        e.preventDefault();
+        const value = e.target.value;
+        if (value) {
+            const res = await updateTicket(user.token, ticketId, { status: value })
+            setTicket(res ?? ticket)
+        }
+    }
+
+    const loadTicket = async () => {
+        const data = await getTicket(user.token, ticketId);
+        setTicket(data);
+    }
+    useEffect(() => {
+        loadTicket();
+    }, [])
 
     return <>
         <div className="ticket-details">
-            <h1 className="title">Details du ticket 3</h1>
+            <h1 className="title">{`Details du ticket avec l'identifiant ${ticket?._id}`}</h1>
             <div className="container">
                 <div className="details">
                     <div>
                         <span className="label">Nom</span>
-                        <span className="value">Kondombo</span>
+                        <span className="value">{ticket?.username}</span>
                     </div>
                     <div>
                         <span className="label">Email</span>
-                        <span className="value">contact.kondombo@gmail.com</span>
+                        <span className="value">{ticket?.email}</span>
                     </div>
                     <div>
                         <span className="label">Description</span>
-                        <span className="value">Je rencontre un soucis lors de la suppression de ma carte virtuelle. j'ai pu supprimé 1 carte mais vu que j'ai de l'argent sur le 2eme je ne sais pas comment faire pour supprimer et recuperer mon argent. pouvez vous m'aider?</span>
+                        <span className="value">{ticket?.description}</span>
                     </div>
                     <div>
                         <span className="label">Status</span>
-                        <select value={'Finis'} name="status" id="status-select" className="outline-none border rounded-sm border-blue-700">
+                        <select onChange={(e) => onStatusChange(e)} value={ticket?.status} name="status" id="status-select" className="outline-none border rounded-sm border-blue-700">
                             <option value="">Opion du status</option>
                             <option value="Finis">Finis</option>
-                            <option value="En progres">En progress</option>
+                            <option value="En progress">En progress</option>
                             <option value="En attente">En attente</option>
-                            <option value="Annule">Annuler</option>
+                            <option value="Annuler">Annuler</option>
                         </select>
                     </div>
                     <div>
-                        <span className="label">Copie le lien de la conversation</span>
-                        <button className="bg-zinc-200 px-2 py-1 rounded-md">Copier</button>
+                        <span className="label">{ticket?.conversationId ? "Copier le lien de la conversation" : "Créer la conversation"}</span>
+                        <button onClick={() => { }} className="bg-zinc-200 px-2 py-1 rounded-md">{ticket?.conversationId ? "Copier" : "Créer"}</button>
                     </div>
                 </div>
                 <div className="send-messages">

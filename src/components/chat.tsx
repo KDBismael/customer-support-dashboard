@@ -43,7 +43,7 @@ export const Chat = () => {
             <div className="conversation bg-slate-300">
                 <div className="conversation h-[350px]  relative overflow-y-auto overflow-x-hidden">
                     <AgentMessage message="Bonjour Mr pour la suppression de votre carte virtuelle nous supprimons la carte definitivement et si vous avez de l'argent sur la carte, l'argent est transferé sur votre wallet PayQin." />
-                    <ClientMessage message="okay merci de m'avoir assister je suis satisfait" />
+                    <ClientMessage message="Ok, merci de m'avoir assisté, je suis satisfait." />
                     <div className="flex justify-end -mt-3">
                         <ClientMessage message="A bientôt" />
                     </div>
