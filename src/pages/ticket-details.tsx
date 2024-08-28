@@ -17,14 +17,16 @@ import {
     Separator,
     Toolbar,
 } from "react-simple-wysiwyg";
-import { getTicket, updateTicket } from "../api";
+import { getTicket, sendEmail, updateTicket } from "../api";
 import { Chat } from "../components/chat";
+import { useSocket } from "../hooks/useSocket";
 
 export async function ticketLoader({ params }: { params: any }) {
     return params;
 }
 
 export const TicketDetails = () => {
+    const { sendMessage, loadConversation, messages, conversationId } = useSocket()
     const user = JSON.parse(localStorage.getItem('user') ?? '')
     const [html, setHtml] = useState("Ecris l'email <b>Ici.</b>");
     const [ticket, setTicket] = useState<TicketI>();
@@ -44,10 +46,29 @@ export const TicketDetails = () => {
         }
     }
 
+    const onSendEmail = () => {
+        if (ticket && html != "Ecris l'email <b>Ici.</b>")
+            sendEmail(user.token, { to: ticket.email, subject: "Payqin bot support", text: '', html: html })
+        setHtml("")
+        console.log("Email envoyé")
+    }
+
+    const onCreateOrCopie = () => {
+        if (!ticket?.conversationId && !conversationId)
+            loadConversation(ticketId, '');
+        else
+            console.log("copier")
+    }
+
     const loadTicket = async () => {
         const data = await getTicket(user.token, ticketId);
         setTicket(data);
     }
+    useEffect(() => {
+        if ((conversationId || ticket?.conversationId) && ticketId)
+            loadConversation(ticketId, conversationId || ticket!.conversationId)
+    }, [ticket?.conversationId, conversationId, ticketId])
+
     useEffect(() => {
         loadTicket();
     }, [])
@@ -80,8 +101,8 @@ export const TicketDetails = () => {
                         </select>
                     </div>
                     <div>
-                        <span className="label">{ticket?.conversationId ? "Copier le lien de la conversation" : "Créer la conversation"}</span>
-                        <button onClick={() => { }} className="bg-zinc-200 px-2 py-1 rounded-md">{ticket?.conversationId ? "Copier" : "Créer"}</button>
+                        <span className="label">{ticket?.conversationId || conversationId ? "Copier le lien de la conversation" : "Créer la conversation"}</span>
+                        <button onClick={() => onCreateOrCopie()} className="bg-zinc-200 px-2 py-1 rounded-md">{ticket?.conversationId || conversationId ? "Copier" : "Créer"}</button>
                     </div>
                 </div>
                 <div className="send-messages">
@@ -109,11 +130,11 @@ export const TicketDetails = () => {
                                 </Toolbar>
                             </Editor>
                         </EditorProvider>
-                        <button>Envoyer</button>
+                        <button onClick={() => onSendEmail()}>Envoyer</button>
                     </div>
                     <div className="instant-message">
                         <h2>Message instantané</h2>
-                        <Chat />
+                        <Chat sendMessage={sendMessage} ticketId={ticketId} conversationId={(ticket?.conversationId || conversationId) ?? ''} messages={messages} />
                     </div>
                 </div>
             </div>

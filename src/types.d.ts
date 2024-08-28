@@ -30,3 +30,11 @@ interface MainStoreI {
     ticketCount: TicketCountI,
     loadTickets: (token: string) => Promise<void>
 }
+
+interface MessageI {
+    sender: string;
+    recipient: string;
+    text: string;
+    conversation: string;
+    _id: string
+}

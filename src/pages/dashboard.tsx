@@ -13,10 +13,10 @@ export const DashBoard = () => {
 
     return <>
         <div className="cardBox">
-            <Card iconName='shield-checkmark-outline' name='Finis' number={ticketCount.finis} />
-            <Card iconName='eye-outline' name='En progress' number={ticketCount.progress} />
-            <Card iconName='hand-left-outline' name='En attente' number={ticketCount.attente} />
-            <Card iconName='close-outline' name='Annuler' number={ticketCount.anuller} />
+            <Card iconName='shield-checkmark-outline' name='Finis' number={ticketCount?.finis} />
+            <Card iconName='eye-outline' name='En progress' number={ticketCount?.progress} />
+            <Card iconName='hand-left-outline' name='En attente' number={ticketCount?.attente} />
+            <Card iconName='close-outline' name='Annuler' number={ticketCount?.anuller} />
         </div>
         <div className="details">
             <RecentTicket />

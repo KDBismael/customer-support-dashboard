@@ -35,5 +35,13 @@ const updateTicket = async (token: string, id: string, data: Partial<TicketI>) =
     }
 }
 
-export { getAllTicket, getTicket, login, updateTicket };
+const sendEmail = async (token: string, data: { to: string, subject: string, text: string, html: string }) => {
+    try {
+        return (await axios.post(`${BASE_URL}/send-email`, data, { headers: { Authorization: `Bearer ${token}` } })).data;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export { getAllTicket, getTicket, login, sendEmail, updateTicket };
 
