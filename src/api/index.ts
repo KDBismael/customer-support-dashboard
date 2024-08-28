@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3500"
-
+export const FRONTEND_URL = 'http://localhost:5173'
 const login = async (email: string, password: string) => {
     try {
         const res = await axios.post(`${BASE_URL}/auth/login`, { email, password })

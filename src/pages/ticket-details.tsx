@@ -17,7 +17,7 @@ import {
     Separator,
     Toolbar,
 } from "react-simple-wysiwyg";
-import { getTicket, sendEmail, updateTicket } from "../api";
+import { FRONTEND_URL, getTicket, sendEmail, updateTicket } from "../api";
 import { Chat } from "../components/chat";
 import { useSocket } from "../hooks/useSocket";
 
@@ -57,7 +57,8 @@ export const TicketDetails = () => {
         if (!ticket?.conversationId && !conversationId)
             loadConversation(ticketId, '');
         else
-            console.log("copier")
+            navigator.clipboard.writeText(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}`)
+        console.log(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}`)
     }
 
     const loadTicket = async () => {
