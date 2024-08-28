@@ -57,8 +57,8 @@ export const TicketDetails = () => {
         if (!ticket?.conversationId && !conversationId)
             loadConversation(ticketId, '');
         else
-            navigator.clipboard.writeText(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}`)
-        console.log(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}`)
+            navigator.clipboard.writeText(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}&ticketId=${ticketId}`)
+        console.log(`${FRONTEND_URL}?conversationId=${ticket?.conversationId}&ticketId=${ticketId}`)
     }
 
     const loadTicket = async () => {
